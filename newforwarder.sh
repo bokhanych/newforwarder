@@ -1,9 +1,6 @@
 #!/bin/bash
 # v5 19/01/2022 dmitry.admin
 # FOR NEW FORWARDERS with updates, utils, zabbix, sysctl, sshd, iptables
-
-# DOWNLOAD AND RUN SCRIPT FROM hetz28-TEST:
-# scp -r -P 38152 root@116.202.27.12:'/home/templates' /home/ &&  cd /home/templates && ./newforwarder.sh;
 function zabbixconf {
  sed -i "12iHostname=$HOSTNAME" /etc/zabbix/zabbix_agentd.conf;
  sed -i '24izabbix ALL=(root) NOPASSWD: /usr/bin/fail2ban-client' /etc/sudoers;
