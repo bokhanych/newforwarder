@@ -141,7 +141,7 @@ back_to_menu;
 
 2)
 cd /home/;
-rm -r /home/newforwarder-main*;
+rm -r /home/*main*;
 rm zabbix*;
 apt-get autoremove --purge;
 clear;
