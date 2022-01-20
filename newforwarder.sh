@@ -1,6 +1,4 @@
 #!/bin/bash
-# v5 19/01/2022 dmitry.admin
-# FOR NEW FORWARDERS with updates, utils, zabbix, sysctl, sshd, iptables
 function zabbixconf {
  sed -i "12iHostname=$HOSTNAME" /etc/zabbix/zabbix_agentd.conf;
  sed -i '24izabbix ALL=(root) NOPASSWD: /usr/bin/fail2ban-client' /etc/sudoers;
@@ -76,7 +74,7 @@ function bbb_vps_loc_port {
 
 function back_to_menu {
  read -p "Press enter to continue";
- /home/templates/newforwarder.sh;
+ /home/newforwarder-main/newforwarder.sh;
 }
 
 function misha {
@@ -112,11 +110,11 @@ dpkg-reconfigure -plow unattended-upgrades;
 adduser yura;
 
 mv /etc/sysctl.conf /etc/sysctl.conf.bakapa;
-cp /home/templates/sysctl-forwarder-2020.conf /etc/sysctl.conf;
+cp /home/newforwarder-main/sysctl-forwarder-2020.conf /etc/sysctl.conf;
 mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bakapa;
-cp /home/templates/sshd_config.vpn /etc/ssh/sshd_config;
+cp /home/newforwarder-main/sshd_config.vpn /etc/ssh/sshd_config;
 mv /etc/iptables/rules.v4 /etc/iptables/rules.v4.bakapa;
-cp /home/templates/iptables/rules.v4 /etc/iptables/rules.v4;
+cp /home/newforwarder-main/iptables/rules.v4 /etc/iptables/rules.v4;
 sshport;
 echo "Current interface: ";
 ifconfig;
@@ -130,7 +128,7 @@ dpkg -i zabbix-release_5.0-1+focal_all.deb;
 apt update --force-yes;
 apt install -y zabbix-agent;
 mv /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bakapa;
-cp /home/templates/zabbix_agentd.conf /etc/zabbix/;
+cp /home/newforwarder-main/zabbix_agentd.conf /etc/zabbix/;
 > /etc/zabbix/zabbix_agentd.psk;
 openssl rand -hex 32 | tee -a /etc/zabbix/zabbix_agentd.psk;
 chmod 400 /etc/zabbix/zabbix_agentd.psk;
@@ -143,12 +141,12 @@ back_to_menu;
 
 2)
 cd /home/;
-rm -r /home/templates;
-rm zabbix-release_5.0-1+focal_all.deb;
+rm -r /home/newforwarder-main*;
+rm zabbix*;
 apt-get autoremove --purge;
 clear;
 misha;
-shutdown -r +3 "Server will restart in 3 minutes."
+shutdown -r +1 "Server will restart in 1 minutes."
 ;;
 
 *)
