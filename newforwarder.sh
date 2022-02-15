@@ -114,7 +114,7 @@ cp /home/newforwarder-main/sysctl-forwarder-2020.conf /etc/sysctl.conf;
 mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bakapa;
 cp /home/newforwarder-main/sshd_config.vpn /etc/ssh/sshd_config;
 mv /etc/iptables/rules.v4 /etc/iptables/rules.v4.bakapa;
-cp /home/newforwarder-main/iptables/rules.v4 /etc/iptables/rules.v4;
+cp /home/newforwarder-main/rules.v4 /etc/iptables/rules.v4;
 sshport;
 echo "Current interface: ";
 ifconfig;
